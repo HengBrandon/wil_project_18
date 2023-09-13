@@ -185,6 +185,10 @@
 
 .icon-feather:before { content: "\e86b"; }
 
+.icon-dollar-sign:before { content: "\24"; }
+
+.icon-robot:before {content: "\f544";}
+
 .icon-facebook:before { content: "\e86c"; }
 
 .icon-file-minus:before { content: "\e86d"; }

@@ -510,7 +510,7 @@ p.text-muted {
 }
 
 /* =======================================================================
- ===============     Ui kit copy model style      ====================== */
+ ===============     Ui kit copy models style      ====================== */
 /* Code examples */
 .datta-example {
   position: relative;
@@ -659,7 +659,7 @@ p.text-muted {
   height: 12rem;
 }
 
-/* editor style for model */
+/* editor style for models */
 .hljs {
   padding: 0.5em;
   color: #abb2bf;
@@ -2809,7 +2809,7 @@ p.text-muted {
 .pcoded-content {
   position: relative;
   display: block;
-  padding: 30px;
+  padding: 30px 0;
 }
 
 .pcoded-main-container {
@@ -2956,7 +2956,7 @@ p.text-muted {
   }
 
   .pcoded-content {
-    padding: 30px 15px;
+    padding: 30px 0;
   }
 
   .card {
@@ -10597,4 +10597,130 @@ div.code-toolbar > .toolbar span:hover {
 		-webkit-box-shadow: 0 0 0 0 rgba(4, 169, 245, 0);
 		box-shadow: 0 0 0 0 rgba(4, 169, 245, 0)
 	}
+}
+
+.loan-header {
+    background-color: rgb(29, 196, 233);
+    position: relative;
+    padding: 25px 0;
+}
+
+.shape {
+  background-color: rgb(29, 196, 233);
+  clip-path: polygon(0 0,100% 0,100% calc(100% - 20px),calc(50% + 320px) 100%,35% calc(100% - 15px),calc(50% - 310px) 100%,0 calc(100% - 15px));
+  display: block;
+  height: 110px;
+  bottom: 0;
+  position: absolute;
+  right: 0;
+  top: 170px;
+  padding: 25px 0;
+  width: 100%;
+  z-index: -2;
+}
+
+.pre-title {
+  text-align: center;
+  font-size: 2.3em;
+  margin: 30px 0 15px;
+  line-height: 1.4;
+  color: white;
+}
+
+.shape-shadow {
+  bottom: 0;
+  box-shadow: none;
+  display: block;
+  background-color: #f9f9f9;
+  top: 260px;
+  z-index: -3;
+  position: absolute;
+  right: 0;
+  width: 100%;
+}
+
+.choice-card {
+  background-color: rgba(255,255,255,.8);
+  border-radius: 10px
+}
+
+.choice-card img {
+    height: 60px;
+    margin-bottom: 30px;
+    width: 60px;
+}
+
+.choice-card .title {
+  font-size: 1.5rem;
+  margin-bottom: 10px;
+  text-align: center;
+  color: black;
+}
+
+.choice-card .subtitle {
+  font-size: 1em;
+  line-height: 1.7;
+  text-align: center;
+  text-wrap: balance;
+}
+
+.choice-card:hover{
+     transform: scale(1.05);
+  box-shadow: 0 10px 20px rgba(0,0,0,.12), 0 4px 8px rgba(0,0,0,.06);
+}
+
+.choice-card:active {
+ background-color: grey;
+}
+
+label {
+  font-size: 1.5em;
+}
+
+.rounded-pill {
+    border-radius: 50rem!important;
+    min-width: 300px;
+    font-size: 1.5em;
+}
+
+.white-bg {
+  background-color: white;
+}
+
+.reason {
+  font-size: 1.2rem;
+}
+
+.result {
+  font-size: 10rem;
+  color: black;
+    text-align: center;
+}
+
+.slider-container {
+ 	height: 300px;
+	width: 500px;
+	margin: auto;
+	border: 1px dashed black;
+	display: inline-block;
+}
+
+#circle {
+	position: absolute;
+	left: 0;
+	top: 0;
+}
+
+#score {
+	font-family: sans-serif;
+	font-weight: bold;
+	color: darkgrey;
+	font-size: 20px;
+}
+
+#status {
+	font-family: sans-serif;
+	font-weight: bold;
+	color: darkgrey;
+	font-size: 100px;
 }

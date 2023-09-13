@@ -10,3 +10,7 @@ django-admin-datta==1.0.10
 # Tooling
 django-dynamic-datatb==1.0.25
 django-api-generator==1.0.17
+
+joblib==1.1.1
+scikit-learn==1.2.1
+lime==0.2

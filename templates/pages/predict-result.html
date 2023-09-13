@@ -1,0 +1,59 @@
+{% extends 'layouts/base.html' %}
+{% load static %}
+
+{% block breadcrumbs %}{% endblock breadcrumbs %}
+
+{% block content %}
+    <!-- [ Main Content ] start -->
+    <div class="row mx-4 p-2 white-bg">
+        <h2 class="col-12">Prediction Result</h2>
+        <p class="d-block col-12">Your credit score is </p>
+        <div class="row justify-content-center w-100">
+            <div class="col-6 slider-container">
+                <svg height="300" width="500">
+                    <!-- <path id="arc0" fill="none" stroke="transparent" stroke-width="1" /> -->
+                    <!-- <path id="arc0" d="M100 300 A 50 50 0 0 1 400 300" stroke="black" fill="transparent"/> -->
+                    <path id="arc1" fill="none" stroke-linecap="round"/>
+                    <path id="arc2" fill="none" stroke-linecap="round"/>
+                    <path id="arc3" fill="none" stroke-linecap="round"/>
+                    <path id="arc4" fill="none" stroke-linecap="round"/>
+                    <path id="arc5" fill="none" stroke-linecap="round"/>
+                    <circle id="circle" cx="150" cy="150" stroke="orange" fill="white"/>
+                    <text id="score" x="50%" y="95%" fill="#525252" dominant-baseline="middle"
+                          text-anchor="middle"></text>
+                    <text id="status" x="50%" y="78%" fill="#525252" dominant-baseline="middle"
+                          text-anchor="middle"></text>
+                </svg>
+                <form class="d-none">
+                    <input id="number" type="number" name="number" min="0" max="850" value={{ prediction }} step="3">
+                </form>
+            </div>
+            <div class="col-6 w-100">
+                <h3>Reason of the result</h3>
+                <h6 class="reason">The top 3 reasons are:</h6>
+                {% for key, value in explains.items %}
+                    <p>{{ key }}. {{ value }}</p>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+
+    <div class="row mx-4 mt-4 p-2 white-bg">
+        <h2>Some advices</h2>
+        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the
+            industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and
+            scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into
+            electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of
+            Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like
+            Aldus PageMaker including versions of Lorem Ipsum.</p>
+    </div>
+
+    <div class="row mx-4 mt-4 p-2 white-bg">
+        <h2 class="col-12">Recommend Banks</h2>
+        <div class="col-12">
+            {% for key, value in recommend_banks.items %}
+                <p><b>{{ key }}</b> with {{ value }}.</p>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock content %}

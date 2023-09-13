@@ -10,7 +10,7 @@ services:
       - db_network
       - web_network
   nginx:
-    container_name: nginx
+    container_name: nginx1
     restart: always
     image: "nginx:latest"
     ports:

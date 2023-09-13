@@ -63,7 +63,7 @@ INSTALLED_APPS = [
     # Tooling API-GEN
     'django_api_gen',            # Django API GENERATOR  # <-- NEW
     'rest_framework',            # Include DRF           # <-- NEW 
-    'rest_framework.authtoken',  # Include DRF Auth      # <-- NEW     
+    'rest_framework.authtoken',  # Include DRF Auth      # <-- NEW
 ]
 
 MIDDLEWARE = [
