@@ -92,6 +92,25 @@ def predict_request(request):
         'Borrower1AgeAtApplicationYears': 'Borrower Age'
     }
 
+    explain_feature = {
+        'TotalMonthlyIncomeAmount': 'The sum of all the monthly incomes,earned by the borrowers which is important, to identify the ability to make monthly loan payments',
+        'CensusTractMedFamIncomeAmount': 'Census Tract Median Family Income Amount',
+        'LTVRatioPercent': 'Calculated by dividing the loan amount by the price of the property(Loan amount + down payment), then multiplying the result by 100.',
+        'TotalDebtExpenseRatioPercent': 'Calculated by dividing current Debt Expense Per Month by Monthly Income',
+        'HousingExpenseRatioPercent': 'It is a financial metric to assess the borrower’s ability to manage housing-related expenses in relation to their total income. Calculated by dividing requesting loan monthly payment + Other Housing Expense by Month by Monthly Income',
+        'Borrower1AgeAtApplicationYears': 'Borrowers age is useful for banks when evaluating loan applications to assess the credit worthiness and making lending decisions.'
+    }
+
+    advises = {
+        'TotalMonthlyIncomeAmount': 'Enhance existing skills for higher-paying job opportunities or start a side hustle or freelancing gig to increase monthly income.',
+        'LoanAcquisitionActualUPBAmt': 'Decrease your borrow amount or increase your down payment in the best to help you get the loan',
+        'LTVRatioPercent': 'Lower Loan-to-value ratio the by making larger down payments.',
+        'TotalDebtExpenseRatioPercent': 'Repay some of your current debt to make lower total debt expense ratio',
+        'HousingExpenseRatioPercent': 'Installing solar panale might help cover some of your housing expense that help lower Housing Expense Ratio',
+        'PropertyUnitCount': "Reconsider other property Unit.",
+        'NumericPropertyType': 'Reconsider other property Unit.',
+    }
+
     states_mean_income = {23: 90040.89,
                           25: 110320.88,
                           33: 104105.29,
@@ -175,7 +194,10 @@ def predict_request(request):
         np_input_list = np.array(input_list)
         exp = explainer.explain_instance(np_input_list, classifier.predict_proba, num_features=12, top_labels=1)
         result = prediction.tolist().pop()
-        contributions = exp.as_map()[result]
+        first_key = list(exp.as_map())[0]
+        contributions = exp.as_map()[first_key]
+        print("contributions")
+        print(contributions, result)
         sorted_contributions = sorted(contributions, key=lambda tup: tup[1], reverse=True)
         dfns = exp.domain_mapper.discretized_feature_names
         reasons = {}
@@ -188,16 +210,23 @@ def predict_request(request):
                         reasons[feature_name] = dfn
                 count += 1
         reason_string = {}
+        advise_string = ""
         count = 1
         for key, val in reasons.items():
             label = label_name_match[key]
             new_val = val.replace(key, label)
-            reason_string[count] = new_val
+            explain = ""
+            if key in explain_feature:
+                explain = " ({})".format(explain_feature[key])
+            if key in advises:
+                advise_string = "{} {}".format(advise_string, advises[key])
+            reason_string[count] = "{}{}".format(new_val, explain)
             count += 1
 
         result = prediction.tolist().pop()
         context["prediction"] = result
         context["explains"] = reason_string
+        context["advises"] = advise_string
 
         banks_scores = {
             "Chicago Bank": {1: 0.0007, 2: 0.047, 3: 0.113, 4: 0.28, 5: 0.55},
